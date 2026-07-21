@@ -12,6 +12,8 @@ import Swal from 'sweetalert2';
 import { getAdminBanners, deleteBanner, clearErrors } from '../../actions/bannerAction';
 import { DELETE_BANNER_RESET } from '../../constants/bannerConstants';
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '') : 'http://localhost:4000';
+
 const BannerTable = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -74,7 +76,7 @@ const BannerTable = () => {
             return mediaUrl;
         }
         
-        return `http://localhost:4000/${mediaUrl.replace(/^\/+/, '')}`;
+        return `${backendUrl}/${mediaUrl.replace(/^\/+/, '')}`;
     };
 
     // Check if media is a video

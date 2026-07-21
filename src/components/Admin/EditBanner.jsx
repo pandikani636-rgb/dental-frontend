@@ -13,6 +13,8 @@ import {
   Alert
 } from '@mui/material';
 import { useSnackbar } from 'notistack';
+
+const backendUrl = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '') : 'http://localhost:4000';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -52,7 +54,7 @@ const EditBanner = () => {
 
   const fetchBanner = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/api/v1/banner/${id}`, {
+      const response = await fetch(`${backendUrl}/api/v1/banner/${id}`, {
         credentials: 'include',
       });
       
@@ -84,7 +86,7 @@ const EditBanner = () => {
           
           // Ensure proper URL format for the image
           if (!mediaUrl.startsWith('http')) {
-            mediaUrl = `http://localhost:4000/${mediaUrl.replace(/^\/+/, '')}`;
+            mediaUrl = `${backendUrl}/${mediaUrl.replace(/^\/+/, '')}`;
           }
           
           setImagePreview(mediaUrl);
@@ -393,7 +395,7 @@ const EditBanner = () => {
     }
     
     try {
-      const response = await fetch(`http://localhost:4000/api/v1/admin/banner/${id}`, {
+      const response = await fetch(`${backendUrl}/api/v1/admin/banner/${id}`, {
         method: 'PUT',
         credentials: 'include',
         body: data,

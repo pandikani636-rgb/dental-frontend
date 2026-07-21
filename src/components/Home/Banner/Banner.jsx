@@ -38,9 +38,11 @@ const Banner = () => {
     fetchBanners();
   }, []);
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '') : 'http://localhost:4000';
+
   const fetchBanners = async () => {
     try {
-      const response = await fetch('http://localhost:4000/api/v1/banners');
+      const response = await fetch(`${backendUrl}/api/v1/banners`);
       const data = await response.json();
 
       if (response.ok && data.banners) {
@@ -61,7 +63,7 @@ const Banner = () => {
       return mediaUrl;
     }
 
-    return `http://localhost:4000/${mediaUrl.replace(/^\/+/, '')}`;
+    return `${backendUrl}/${mediaUrl.replace(/^\/+/, '')}`;
   };
 
   const getEmbedUrl = (url) => {

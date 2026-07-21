@@ -1,5 +1,7 @@
 // Utility functions for handling media URLs consistently across the application
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '') : 'http://localhost:4000';
+
 export const getImageUrl = (image) => {
     try {
         if (!image || typeof image !== 'object') return '/default.png';
@@ -8,7 +10,7 @@ export const getImageUrl = (image) => {
             if (image.url.startsWith('http')) {
                 return image.url;
             }
-            return `http://localhost:4000/admin/product/${image.url}`;
+            return `${backendUrl}/admin/product/${image.url}`;
         }
         
         if (image.public_id && typeof image.public_id === 'string') {
@@ -34,7 +36,7 @@ export const getVideoUrl = (product) => {
             if (product.video.url && typeof product.video.url === 'string') {
                 return product.video.url.startsWith('http') 
                     ? product.video.url 
-                    : `http://localhost:4000/admin/product/${product.video.url}`;
+                    : `${backendUrl}/admin/product/${product.video.url}`;
             }
             if (product.video.public_id && typeof product.video.public_id === 'string') {
                 return `https://res.cloudinary.com/your-cloud-name/video/upload/${product.video.public_id}`;

@@ -195,6 +195,8 @@ export const clearRegistrationSuccess = () => async (dispatch) => {
     dispatch({ type: CLEAR_REGISTRATION_SUCCESS });
 };
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '') : 'http://localhost:4000';
+
 // Update User Profile
 export const updateProfile = (userData) => async (dispatch) => {
     try {
@@ -204,7 +206,7 @@ export const updateProfile = (userData) => async (dispatch) => {
         
         if (userData instanceof FormData) {
             // Handle FormData (with file)
-            response = await fetch('http://localhost:4000/api/v1/me/update', {
+            response = await fetch(`${backendUrl}/api/v1/me/update`, {
                 method: 'PUT',
                 credentials: 'include',
                 body: userData,

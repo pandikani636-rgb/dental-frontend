@@ -27,7 +27,7 @@ const Product = (props) => {
             dispatch(removeFromWishlist(_id));
             enqueueSnackbar("Remove From Wishlist", { variant: "success" });
         } else {
-            dispatch(addToWishlist(_id));
+            dispatch(addToWishlist({ product: _id, name, price, images, stock }));
             enqueueSnackbar("Added To Wishlist", { variant: "success" });
         }
     }
@@ -69,7 +69,7 @@ const Product = (props) => {
                         draggable="false" 
                         className="w-full h-full object-contain" 
                         src={images && images.length > 0 && images[0] && images[0].url 
-                            ? `http://localhost:4000/admin/product/${images[0].url}` 
+                            ? (images[0].url.startsWith('http') ? images[0].url : `${backendUrl}/admin/product/${images[0].url}`) 
                             : 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="150" height="150"%3E%3Crect width="150" height="150" fill="%23f3f4f6"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="14" fill="%239ca3af"%3ENo Image%3C/text%3E%3C/svg%3E'
                         } 
                         alt={name} 
