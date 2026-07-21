@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #f1f3f6;
+  font-family: 'Roboto', sans-serif;
+}
+
+.swal2-actions button,
+input[type="button"],
+input[type="submit"] {
+  -webkit-appearance: none;
+  /* IMPORTANT */
+  appearance: none;
+
+  background: none;
+  /* removes background-color & image */
+  border: none;
+  /* optional */
+  box-shadow: none;
+  /* optional */
+}
+
+/* hover navbar dropdown arrow */
+.arrow_down {
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-bottom: 11px solid #fff;
+}
+
+/* hover navbar dropdown arrow */
+
+/* login signup sidebar bg image */
+.loginSidebar {
+  background-image: url("https://cdni.iconscout.com/illustration/premium/thumb/online-medical-consultation-4487048-3723264.png");
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: 280px;
+}
+
+/* login signup sidebar bg image */
+
+/* Responsive Design Utilities */
+@layer utilities {
+
+  /* Container responsive padding */
+  .container-responsive {
+    @apply px-4 sm:px-6 lg:px-8 xl:px-12;
+  }
+
+  /* Responsive text sizes */
+  .text-responsive-xs {
+    @apply text-xs sm:text-sm;
+  }
+
+  .text-responsive-sm {
+    @apply text-sm sm:text-base;
+  }
+
+  .text-responsive-base {
+    @apply text-base sm:text-lg;
+  }
+
+  .text-responsive-lg {
+    @apply text-lg sm:text-xl lg:text-2xl;
+  }
+
+  .text-responsive-xl {
+    @apply text-xl sm:text-2xl lg:text-3xl;
+  }
+
+  /* Responsive spacing */
+  .gap-responsive {
+    @apply gap-2 sm:gap-4 lg:gap-6;
+  }
+
+  .p-responsive {
+    @apply p-2 sm:p-4 lg:p-6;
+  }
+
+  .m-responsive {
+    @apply m-2 sm:m-4 lg:m-6;
+  }
+
+  /* Grid responsive */
+  .grid-responsive-products {
+    @apply grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5;
+  }
+
+  .grid-responsive-cards {
+    @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
+  }
+
+  /* Flex responsive */
+  .flex-responsive {
+    @apply flex-col sm:flex-row;
+  }
+
+  /* Hide/show on mobile */
+  .mobile-hidden {
+    @apply hidden sm:block;
+  }
+
+  .mobile-only {
+    @apply block sm:hidden;
+  }
+
+  /* Button responsive */
+  .btn-responsive {
+    @apply px-3 py-2 text-sm sm:px-4 sm:py-2.5 sm:text-base;
+  }
+
+  /* Card responsive */
+  .card-responsive {
+    @apply p-3 sm:p-4 lg:p-6 rounded-lg sm:rounded-xl;
+  }
+}
+
+/* Mobile-first responsive breakpoints */
+@media (max-width: 640px) {
+
+  /* Mobile specific styles */
+  .mobile-nav {
+    @apply fixed bottom-0 left-0 right-0 bg-white border-t z-50;
+  }
+
+  .mobile-sidebar {
+    @apply fixed inset-0 bg-black bg-opacity-50 z-50;
+  }
+
+  .mobile-content {
+    @apply pb-16;
+    /* Space for mobile nav */
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+
+  /* Tablet specific styles */
+  .tablet-grid {
+    @apply grid-cols-2 lg:grid-cols-3;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  /* Desktop small specific styles */
+  .desktop-sm-grid {
+    @apply grid-cols-3 xl:grid-cols-4;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .touch-friendly {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  .hover\:scale-105:hover {
+    transform: none;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+  .high-dpi-image {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .landscape-mobile {
+    @apply h-screen overflow-hidden;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-friendly {
+    @apply text-black bg-white;
+  }
+}
