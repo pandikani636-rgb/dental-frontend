@@ -35,7 +35,7 @@ const HomeProducts = () => {
         <div className="px-4 lg:px-0 container mx-auto">
             {/* Products List */}
             <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                {loading ? <Loader /> : products?.length === 0 ? (
+                {loading ? <Loader /> : (!products || products.length === 0) ? (
                     <div className="col-span-full flex flex-col items-center justify-center gap-4 p-6 bg-white rounded-lg shadow">
                         <img 
                             draggable="false" 
@@ -47,7 +47,7 @@ const HomeProducts = () => {
                         <p className="text-center text-gray-500">Please check the spelling or try another medicine</p>
                     </div>
                 ) : (
-                    products.map((product) => (
+                    (products || []).map((product) => (
                         <HomeProductCard 
                             key={product._id} 
                             {...product}
