@@ -98,12 +98,6 @@ const reducer = combineReducers({
     deleteRole: deleteRoleReducer,
     updateRole: updateRoleReducer,
     roleDetails: roleDetailsReducer,
-
-    roles: rolesReducer,
-    newRole: newRoleReducer,
-    deleteRole: deleteRoleReducer,
-    updateRole: updateRoleReducer,
-    roleDetails: roleDetailsReducer,
     contacts: contactusListReducer,
     newContactus: newContactusReducer,
     contactDetails: contactusDetailsReducer,
