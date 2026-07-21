@@ -8,6 +8,11 @@ import store from './store';
 import { SnackbarProvider } from 'notistack';
 import { UserProvider } from './context/UserContext';
 import { replaceAlert } from './utils/sweetAlert';
+import axios from 'axios';
+
+// Configure Axios defaults for deployed backend URL and cross-origin cookie credentials
+axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '') : 'http://localhost:4000';
+axios.defaults.withCredentials = true;
 
 // Replace all alert functions with SweetAlert
 replaceAlert();
