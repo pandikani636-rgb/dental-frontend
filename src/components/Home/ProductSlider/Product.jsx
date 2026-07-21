@@ -9,6 +9,8 @@ import { addToWishlist, removeFromWishlist } from '../../../actions/wishlistActi
 import { addItemsToCart } from '../../../actions/cartAction';
 import { useSnackbar } from 'notistack';
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '') : 'http://localhost:4000';
+
 const Product = (props) => {
 
     const { _id, name, images, ratings, numOfReviews, price, cuttedPrice, stock, gst } = props;

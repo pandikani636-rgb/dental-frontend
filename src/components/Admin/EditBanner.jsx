@@ -14,9 +14,10 @@ import {
 } from '@mui/material';
 import { useSnackbar } from 'notistack';
 
-const backendUrl = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '') : 'http://localhost:4000';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import DeleteIcon from '@mui/icons-material/Delete';
+
+const backendUrl = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '') : 'http://localhost:4000';
 
 const EditBanner = () => {
   const { id } = useParams();
