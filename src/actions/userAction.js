@@ -46,9 +46,11 @@ import {
 } from '../constants/userConstants';
 import axios from 'axios';
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '') : 'https://dental-backend-ten.vercel.app';
+
 // Create axios instance with base URL (if needed)
 const API = axios.create({
-    baseURL: process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '') : 'http://localhost:4000',
+    baseURL: backendUrl,
     withCredentials: true,
     headers: {
         'Content-Type': 'application/json',
@@ -92,7 +94,7 @@ export const createUser = (userData) => async (dispatch) => {
         dispatch({ type: REGISTER_USER_REQUEST });
 
         // Create a separate axios instance without credentials to avoid session conflicts
-        const response = await fetch('/api/v1/register', {
+        const response = await fetch(`${backendUrl}/api/v1/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -195,8 +197,6 @@ export const logoutUser = () => async (dispatch) => {
 export const clearRegistrationSuccess = () => async (dispatch) => {
     dispatch({ type: CLEAR_REGISTRATION_SUCCESS });
 };
-
-const backendUrl = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '') : 'http://localhost:4000';
 
 // Update User Profile
 export const updateProfile = (userData) => async (dispatch) => {

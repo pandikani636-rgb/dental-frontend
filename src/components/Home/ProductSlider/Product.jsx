@@ -9,7 +9,7 @@ import { addToWishlist, removeFromWishlist } from '../../../actions/wishlistActi
 import { addItemsToCart } from '../../../actions/cartAction';
 import { useSnackbar } from 'notistack';
 
-const backendUrl = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '') : 'http://localhost:4000';
+const backendUrl = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '') : 'https://dental-backend-ten.vercel.app';
 
 const Product = (props) => {
 

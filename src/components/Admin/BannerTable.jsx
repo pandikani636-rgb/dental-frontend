@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 import { getAdminBanners, deleteBanner, clearErrors } from '../../actions/bannerAction';
 import { DELETE_BANNER_RESET } from '../../constants/bannerConstants';
 
-const backendUrl = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '') : 'http://localhost:4000';
+const backendUrl = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '') : 'https://dental-backend-ten.vercel.app';
 
 const BannerTable = () => {
     const dispatch = useDispatch();
