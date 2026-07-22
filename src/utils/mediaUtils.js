@@ -1,6 +1,6 @@
 // Utility functions for handling media URLs consistently across the application
 
-const backendUrl = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '') : 'https://dental-backend-ten.vercel.app';
+import { backendUrl } from './config';
 
 export const getImageUrl = (image) => {
     try {

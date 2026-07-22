@@ -11,8 +11,7 @@ import { useSnackbar } from 'notistack';
 import Swal from 'sweetalert2';
 import { getAdminBanners, deleteBanner, clearErrors } from '../../actions/bannerAction';
 import { DELETE_BANNER_RESET } from '../../constants/bannerConstants';
-
-const backendUrl = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '') : 'https://dental-backend-ten.vercel.app';
+import { backendUrl } from '../../utils/config';
 
 const BannerTable = () => {
     const dispatch = useDispatch();

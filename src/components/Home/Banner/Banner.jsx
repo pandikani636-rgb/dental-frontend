@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import './Banner.css';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { backendUrl } from '../../../utils/config';
 
 export const PreviousBtn = ({ className, onClick }) => {
   return (
@@ -38,7 +39,7 @@ const Banner = () => {
     fetchBanners();
   }, []);
 
-const backendUrl = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '') : 'https://dental-backend-ten.vercel.app';
+
 
   const fetchBanners = async () => {
     try {

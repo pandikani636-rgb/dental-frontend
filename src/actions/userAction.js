@@ -45,8 +45,7 @@ import {
     CLEAR_REGISTRATION_DATA
 } from '../constants/userConstants';
 import axios from 'axios';
-
-const backendUrl = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '') : 'https://dental-backend-ten.vercel.app';
+import { backendUrl } from '../utils/config';
 
 // Create axios instance with base URL (if needed)
 const API = axios.create({

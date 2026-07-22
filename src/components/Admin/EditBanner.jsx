@@ -16,8 +16,7 @@ import { useSnackbar } from 'notistack';
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import DeleteIcon from '@mui/icons-material/Delete';
-
-const backendUrl = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '') : 'https://dental-backend-ten.vercel.app';
+import { backendUrl } from '../../utils/config';
 
 const EditBanner = () => {
   const { id } = useParams();

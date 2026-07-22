@@ -8,8 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToWishlist, removeFromWishlist } from '../../../actions/wishlistAction';
 import { addItemsToCart } from '../../../actions/cartAction';
 import { useSnackbar } from 'notistack';
-
-const backendUrl = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '') : 'https://dental-backend-ten.vercel.app';
+import { backendUrl } from '../../../utils/config';
 
 const Product = (props) => {
 
