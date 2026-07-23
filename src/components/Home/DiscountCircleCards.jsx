@@ -5,6 +5,7 @@ import { getProducts } from '../../actions/productAction';
 import { clearErrors } from '../../actions/productAction';
 import { useSnackbar } from 'notistack';
 import { useEffect, useState, useRef } from 'react';
+import { backendUrl } from '../../utils/config';
 
 const ProductMedia = ({ product }) => {
     const videoRef = useRef(null);
@@ -15,11 +16,11 @@ const ProductMedia = ({ product }) => {
     const getImageUrl = () => {
         if (product.images && product.images.length > 0 && product.images[0]) {
             const image = product.images[0];
-            if (image.url && (image.url.startsWith('http') || image.url.startsWith('/'))) {
+            if (image.url && image.url.startsWith('http')) {
                 return image.url;
             }
             if (image.url && image.url.includes('uploads')) {
-                return `/${image.url.replace(/\\/g, '/')}`;
+                return `${backendUrl}/${image.url.replace(/\\/g, '/').replace(/^\//, '')}`;
             }
             if (image.public_id) {
                 return `/${image.public_id}`;
@@ -170,11 +171,14 @@ const DiscountCircleCards = () => {
     const { products, error } = useSelector(state => state.products);
 
     useEffect(() => {
+        dispatch(getProducts("", "", [0, 50000000], 0, 1));
+    }, [dispatch]);
+
+    useEffect(() => {
         if (error) {
             enqueueSnackbar(error, { variant: "error" });
             dispatch(clearErrors());
         }
-        dispatch(getProducts("", "", [0, 50000000], 0, 1));
     }, [dispatch, error, enqueueSnackbar]);
 
     const discountProducts = products?.filter(product => product.discount > 0) || [];

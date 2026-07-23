@@ -47,11 +47,14 @@ const Home = () => {
   const { error, loading } = useSelector((state) => state.products);
 
   useEffect(() => {
+    dispatch(getProducts("", "", [0, 50000000], 0, 1));
+  }, [dispatch]);
+
+  useEffect(() => {
     if (error) {
       enqueueSnackbar(error, { variant: "error" });
       dispatch(clearErrors());
     }
-    dispatch(getProducts("", "", [0, 50000000], 0, 1));
   }, [dispatch, error, enqueueSnackbar]);
 
   const getBotResponse = (userMessage) => {

@@ -23,13 +23,16 @@ const HomeProducts = () => {
     const { products, loading, error, resultPerPage, filteredProductsCount } = useSelector(state => state.products);
 
     useEffect(() => {
+        // Use a wider price range and ensure we get all products
+        dispatch(getProducts("", "", [0, 50000000], 0, currentPage));
+    }, [dispatch, currentPage]);
+
+    useEffect(() => {
         if (error) {
             enqueueSnackbar(error, { variant: "error" });
             dispatch(clearErrors());
         }
-        // Use a wider price range and ensure we get all products
-        dispatch(getProducts("", "", [0, 50000000], 0, currentPage));
-    }, [dispatch, currentPage, error, enqueueSnackbar]);
+    }, [dispatch, error, enqueueSnackbar]);
 
     return (
         <div className="px-4 lg:px-0 container mx-auto">

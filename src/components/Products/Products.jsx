@@ -22,6 +22,7 @@ import { useSnackbar } from 'notistack';
 import MetaData from '../Layouts/MetaData';
 import Swal from 'sweetalert2';
 import { Height } from '@mui/icons-material';
+import { backendUrl } from '../../utils/config';
 
 const ProductCard = ({ _id, name, images, video, video_url, media_type, seller, ratings, numOfReviews, price, cuttedPrice, stock, discount, delivery_charge, gst }) => {
   const dispatch = useDispatch();
@@ -41,12 +42,12 @@ const ProductCard = ({ _id, name, images, video, video_url, media_type, seller, 
     if (images && images.length > 0 && images[0]) {
       const image = images[0];
       // Check if it's already a full URL
-      if (image.url && (image.url.startsWith('http') || image.url.startsWith('/'))) {
+      if (image.url && image.url.startsWith('http')) {
         return image.url;
       }
       // Handle relative paths
       if (image.url && image.url.includes('uploads')) {
-        return `/${image.url.replace(/\\/g, '/')}`;
+        return `${backendUrl}/${image.url.replace(/\\/g, '/').replace(/^\//, '')}`;
       }
       // Fallback to public_id if available
       if (image.public_id) {
@@ -342,12 +343,15 @@ const Products = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    dispatch(getProducts(keyword, category, price, ratings, currentPage, subCategory));
+  }, [dispatch, keyword, category, subCategory, price, ratings, currentPage]);
+
+  useEffect(() => {
     if (error) {
       enqueueSnackbar(error, { variant: "error" });
       dispatch(clearErrors());
     }
-    dispatch(getProducts(keyword, category, price, ratings, currentPage, subCategory));
-  }, [dispatch, keyword, category, subCategory, price, ratings, currentPage, error, enqueueSnackbar]);
+  }, [dispatch, error, enqueueSnackbar]);
 
   return (
     <>

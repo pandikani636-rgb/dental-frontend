@@ -10,6 +10,7 @@ import { addItemsToCart } from '../../actions/cartAction';
 import { useSnackbar } from 'notistack';
 import Swal from 'sweetalert2';
 import { useState, useEffect, useRef } from 'react';
+import { backendUrl } from '../../utils/config';
 
 const HomeProductCard = ({
   _id,
@@ -55,12 +56,12 @@ const HomeProductCard = ({
     if (images && images.length > 0 && images[0]) {
       const image = images[0];
       // Check if it's already a full URL
-      if (image.url && (image.url.startsWith('http') || image.url.startsWith('/'))) {
+      if (image.url && image.url.startsWith('http')) {
         return image.url;
       }
       // Handle relative paths
       if (image.url && image.url.includes('uploads')) {
-        return `/${image.url.replace(/\\/g, '/')}`;
+        return `${backendUrl}/${image.url.replace(/\\/g, '/').replace(/^\//, '')}`;
       }
       // Fallback to public_id if available
       if (image.public_id) {
