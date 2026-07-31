@@ -44,7 +44,6 @@ const UserTable = () => {
 
     // Filter users based on search term - ensure user is not null/undefined
     const filteredUsers = users?.filter(user => {
-        user.name.toLowerCase().includes(searchTerm.toLowerCase())
         // First check if user exists and has required properties
         if (!user || !user._id) {
             return false;
@@ -60,7 +59,6 @@ const UserTable = () => {
             user.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
             user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
             user.phone?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            user.role.toLowerCase().includes(searchTerm.toLowerCase()) || 
             user.role?.toLowerCase().includes(searchTerm.toLowerCase()) ||
             user.gender?.toLowerCase().includes(searchTerm.toLowerCase())
         );
