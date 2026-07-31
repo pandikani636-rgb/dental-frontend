@@ -40,7 +40,7 @@ const UserTable = () => {
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [searchTerm, setSearchTerm] = useState('');
 
-    const { users, error, usersLoading, isDeleted, error: deleteError } = useSelector((state) => state.user);
+    const { users, usersLoading, usersError, isDeleted, error: deleteError } = useSelector((state) => state.user);
 
     // Filter users based on search term - ensure user is not null/undefined
     const filteredUsers = users?.filter(user => {
@@ -84,8 +84,8 @@ const UserTable = () => {
     }, [location.pathname, dispatch]);
 
     useEffect(() => {
-        if (error) {
-            enqueueSnackbar(error, { variant: "error" });
+        if (usersError) {
+            enqueueSnackbar(usersError, { variant: "error" });
             dispatch(clearErrors());
         }
 
@@ -99,7 +99,7 @@ const UserTable = () => {
             dispatch({ type: DELETE_USER_RESET });
             dispatch(getAllUsers());
         }
-    }, [dispatch, error, deleteError, isDeleted, enqueueSnackbar]);
+    }, [dispatch, usersError, deleteError, isDeleted, enqueueSnackbar]);
 
 
 
